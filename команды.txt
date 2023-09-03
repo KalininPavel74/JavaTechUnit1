@@ -1,0 +1,25 @@
+Удалить предыдующий экземпляр образа.
+sudo docker rmi my_jdk
+
+Создать образ содержащий jdk из файла Dockerfile_jdk, скормить ему исходники и получить откомпиллированные файлы и документацию.
+sudo docker build . -t my_jdk -f Dockerfile_jdk
+
+Создать контейнер из образа, смонтировать хостовую директорию для откомпиллированных файлов classes_host и для документации docs_host, скопирвать данные.
+sudo docker run --rm -v /home/pavel/windowsGB/tech/unit1/classes_host:/classes_host -v /home/pavel/windowsGB/tech/unit1/docs_host:/docs_host my_jdk
+
+Удалить предыдующий экземпляр образа.
+sudo docker rmi my_jre
+
+Создать образ содержащий jre из файла Dockerfile_jre, скормить ему откомпиллированные файлы.
+sudo docker build . -t my_jre -f Dockerfile_jre
+
+Создать контейнер из образа my_jre и запустить приложение.
+sudo docker run --rm my_jre
+
+-----------------
+Не получилось:
+1 - произвести очистку и копирование  не в файле Dockerfile_jdk в команде CMD, в дополнительной команде docker run.
+2 - запустить программу на выполнение не в файле Dockerfile_jre в команде CMD, в дополнительной команде docker run.
+3 - запустить все эти команды в bash файле, даже по root. (выдает невероятные ошибки)
+
+

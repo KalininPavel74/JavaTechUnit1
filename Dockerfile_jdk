@@ -1,0 +1,7 @@
+FROM bellsoft/liberica-openjdk-alpine:11.0.16
+COPY ./src ./src_img
+RUN mkdir ./classes_img
+RUN mkdir ./docs_img
+RUN javac -sourcepath ./src_img -d ./classes_img ./src_img/p1/p2/Main.java
+RUN javadoc -d ./docs_img -sourcepath ./src_img -cp ./classes_img -subpackages p1 
+CMD rm -r -f ./classes_host/*; cp -r ./classes_img/* ./classes_host; rm -r -f ./docs_host/*; cp -r ./docs_img/* ./docs_host;

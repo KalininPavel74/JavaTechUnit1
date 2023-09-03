@@ -1,0 +1,3 @@
+FROM bellsoft/liberica-openjdk-alpine:11.0.16
+COPY ./classes_host ./classes_img
+CMD java -classpath ./classes_img p1.p2.Main
